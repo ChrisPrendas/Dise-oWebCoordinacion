@@ -200,6 +200,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\tbCursosController.cs" />
+    <Compile Include="Controllers\tbFacturasController.cs" />
     <Compile Include="dbVentasModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -218,6 +220,21 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -226,6 +243,9 @@
     <Compile Include="Startup.cs" />
     <Compile Include="tbCategorias.cs">
       <DependentUpon>dbVentasModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbCursos.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="tbFactura.cs">
       <DependentUpon>dbVentasModel.tt</DependentUpon>
@@ -258,6 +278,36 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Resources\foto1.jpg" />
+    <Content Include="Resources\foto10.jpg" />
+    <Content Include="Resources\foto11.jpg" />
+    <Content Include="Resources\foto12.jpg" />
+    <Content Include="Resources\foto13.jpg" />
+    <Content Include="Resources\foto14.jpg" />
+    <Content Include="Resources\foto15.jpg" />
+    <Content Include="Resources\foto16.jpg" />
+    <Content Include="Resources\foto17.jpg" />
+    <Content Include="Resources\foto18.jpg" />
+    <Content Include="Resources\foto19.jpg" />
+    <Content Include="Resources\foto2.jpg" />
+    <Content Include="Resources\foto20.jpg" />
+    <Content Include="Resources\foto3.jpg" />
+    <Content Include="Resources\foto4.jpg" />
+    <Content Include="Resources\foto5.jpg" />
+    <Content Include="Resources\foto6.jpg" />
+    <Content Include="Resources\foto7.jpg" />
+    <Content Include="Resources\foto8.jpg" />
+    <Content Include="Resources\foto9.jpg" />
     <Content Include="Resources\img1.jpg" />
     <Content Include="Resources\img2.jpg" />
     <Content Include="Resources\img3.jpg" />
@@ -274,6 +324,13 @@
     </EntityDeploy>
     <Content Include="dbVentasModel.edmx.diagram">
       <DependentUpon>dbVentasModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -321,6 +378,16 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\tbFacturas\Create.cshtml" />
+    <Content Include="Views\tbFacturas\Delete.cshtml" />
+    <Content Include="Views\tbFacturas\Details.cshtml" />
+    <Content Include="Views\tbFacturas\Edit.cshtml" />
+    <Content Include="Views\tbFacturas\Index.cshtml" />
+    <Content Include="Views\tbCursos\Create.cshtml" />
+    <Content Include="Views\tbCursos\Delete.cshtml" />
+    <Content Include="Views\tbCursos\Details.cshtml" />
+    <Content Include="Views\tbCursos\Edit.cshtml" />
+    <Content Include="Views\tbCursos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

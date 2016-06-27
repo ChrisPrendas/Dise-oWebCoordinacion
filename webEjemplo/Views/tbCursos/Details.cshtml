@@ -1,0 +1,99 @@
+﻿@model webEjemplo.tbCursos
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tbCursos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.sigla)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sigla)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lugar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lugar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ciclo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ciclo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.creditos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.creditos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.programa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.programa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.totalHoras)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totalHoras)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.modalidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.modalidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nombrePrograma)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombrePrograma)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idCurso }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

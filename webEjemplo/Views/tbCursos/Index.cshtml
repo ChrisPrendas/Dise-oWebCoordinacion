@@ -1,0 +1,88 @@
+﻿@model IEnumerable<webEjemplo.tbCursos>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.sigla)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lugar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ciclo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.creditos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.programa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.totalHoras)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.modalidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombrePrograma)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.sigla)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lugar)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ciclo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.creditos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.programa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.totalHoras)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.modalidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombrePrograma)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idCurso }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idCurso }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idCurso })
+        </td>
+    </tr>
+}
+
+</table>
