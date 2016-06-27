@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dbVentasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbCategorias">
+          <Key>
+            <PropertyRef Name="idCategoria" />
+          </Key>
+          <Property Name="idCategoria" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbFactura">
+          <Key>
+            <PropertyRef Name="idFactura" />
+          </Key>
+          <Property Name="idFactura" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="idCliente" Type="int" Nullable="false" />
+          <Property Name="montoTotal" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbFacturaDet">
+          <Key>
+            <PropertyRef Name="idFactura" />
+            <PropertyRef Name="codProducto" />
+          </Key>
+          <Property Name="idFactura" Type="int" Nullable="false" />
+          <Property Name="codProducto" Type="int" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+          <Property Name="precioVenta" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="subtotal" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbLogin">
+          <Key>
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="idCliente" Type="int" Nullable="false" />
+          <Property Name="nomCliente" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="cedCliente" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="direCliente" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="password" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbProducto">
+          <Key>
+            <PropertyRef Name="idProducto" />
+          </Key>
+          <Property Name="idProducto" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="precio" Type="money" Nullable="false" />
+          <Property Name="cantMax" Type="int" Nullable="false" />
+          <Property Name="cantMin" Type="int" Nullable="false" />
+          <Property Name="idCategoria" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tbCompra_tbProducto">
+          <End Role="tbProducto" Type="Self.tbProducto" Multiplicity="1" />
+          <End Role="tbFacturaDet" Type="Self.tbFacturaDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProducto">
+              <PropertyRef Name="idProducto" />
+            </Principal>
+            <Dependent Role="tbFacturaDet">
+              <PropertyRef Name="codProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbFactura_tbLogin">
+          <End Role="tbLogin" Type="Self.tbLogin" Multiplicity="1" />
+          <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbLogin">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="tbFactura">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbFacturaDet_tbFactura">
+          <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="1" />
+          <End Role="tbFacturaDet" Type="Self.tbFacturaDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbFactura">
+              <PropertyRef Name="idFactura" />
+            </Principal>
+            <Dependent Role="tbFacturaDet">
+              <PropertyRef Name="idFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbProducto_tbCategorias">
+          <End Role="tbCategorias" Type="Self.tbCategorias" Multiplicity="1" />
+          <End Role="tbProducto" Type="Self.tbProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbCategorias">
+              <PropertyRef Name="idCategoria" />
+            </Principal>
+            <Dependent Role="tbProducto">
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbVentasModelStoreContainer">
+          <EntitySet Name="tbCategorias" EntityType="Self.tbCategorias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbFactura" EntityType="Self.tbFactura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbFacturaDet" EntityType="Self.tbFacturaDet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbLogin" EntityType="Self.tbLogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbProducto" EntityType="Self.tbProducto" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tbCompra_tbProducto" Association="Self.FK_tbCompra_tbProducto">
+            <End Role="tbProducto" EntitySet="tbProducto" />
+            <End Role="tbFacturaDet" EntitySet="tbFacturaDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbFactura_tbLogin" Association="Self.FK_tbFactura_tbLogin">
+            <End Role="tbLogin" EntitySet="tbLogin" />
+            <End Role="tbFactura" EntitySet="tbFactura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbFacturaDet_tbFactura" Association="Self.FK_tbFacturaDet_tbFactura">
+            <End Role="tbFactura" EntitySet="tbFactura" />
+            <End Role="tbFacturaDet" EntitySet="tbFacturaDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbProducto_tbCategorias" Association="Self.FK_tbProducto_tbCategorias">
+            <End Role="tbCategorias" EntitySet="tbCategorias" />
+            <End Role="tbProducto" EntitySet="tbProducto" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbVentasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbCategorias">
+          <Key>
+            <PropertyRef Name="idCategoria" />
+          </Key>
+          <Property Name="idCategoria" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tbProducto" Relationship="Self.FK_tbProducto_tbCategorias" FromRole="tbCategorias" ToRole="tbProducto" />
+        </EntityType>
+        <EntityType Name="tbFactura">
+          <Key>
+            <PropertyRef Name="idFactura" />
+          </Key>
+          <Property Name="idFactura" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="montoTotal" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="tbLogin" Relationship="Self.FK_tbFactura_tbLogin" FromRole="tbFactura" ToRole="tbLogin" />
+          <NavigationProperty Name="tbFacturaDet" Relationship="Self.FK_tbFacturaDet_tbFactura" FromRole="tbFactura" ToRole="tbFacturaDet" />
+        </EntityType>
+        <EntityType Name="tbFacturaDet">
+          <Key>
+            <PropertyRef Name="idFactura" />
+            <PropertyRef Name="codProducto" />
+          </Key>
+          <Property Name="idFactura" Type="Int32" Nullable="false" />
+          <Property Name="codProducto" Type="Int32" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <Property Name="precioVenta" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="subtotal" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="tbFactura" Relationship="Self.FK_tbFacturaDet_tbFactura" FromRole="tbFacturaDet" ToRole="tbFactura" />
+          <NavigationProperty Name="tbProducto" Relationship="Self.FK_tbCompra_tbProducto" FromRole="tbFacturaDet" ToRole="tbProducto" />
+        </EntityType>
+        <EntityType Name="tbLogin">
+          <Key>
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="nomCliente" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cedCliente" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="direCliente" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tbFactura" Relationship="Self.FK_tbFactura_tbLogin" FromRole="tbLogin" ToRole="tbFactura" />
+        </EntityType>
+        <EntityType Name="tbProducto">
+          <Key>
+            <PropertyRef Name="idProducto" />
+          </Key>
+          <Property Name="idProducto" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="cantMax" Type="Int32" Nullable="false" />
+          <Property Name="cantMin" Type="Int32" Nullable="false" />
+          <Property Name="idCategoria" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tbCategorias" Relationship="Self.FK_tbProducto_tbCategorias" FromRole="tbProducto" ToRole="tbCategorias" />
+          <NavigationProperty Name="tbFacturaDet" Relationship="Self.FK_tbCompra_tbProducto" FromRole="tbProducto" ToRole="tbFacturaDet" />
+        </EntityType>
+        <Association Name="FK_tbProducto_tbCategorias">
+          <End Role="tbCategorias" Type="Self.tbCategorias" Multiplicity="1" />
+          <End Role="tbProducto" Type="Self.tbProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbCategorias">
+              <PropertyRef Name="idCategoria" />
+            </Principal>
+            <Dependent Role="tbProducto">
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbFactura_tbLogin">
+          <End Role="tbLogin" Type="Self.tbLogin" Multiplicity="1" />
+          <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbLogin">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="tbFactura">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbFacturaDet_tbFactura">
+          <End Role="tbFactura" Type="Self.tbFactura" Multiplicity="1" />
+          <End Role="tbFacturaDet" Type="Self.tbFacturaDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbFactura">
+              <PropertyRef Name="idFactura" />
+            </Principal>
+            <Dependent Role="tbFacturaDet">
+              <PropertyRef Name="idFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbCompra_tbProducto">
+          <End Role="tbProducto" Type="Self.tbProducto" Multiplicity="1" />
+          <End Role="tbFacturaDet" Type="Self.tbFacturaDet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbProducto">
+              <PropertyRef Name="idProducto" />
+            </Principal>
+            <Dependent Role="tbFacturaDet">
+              <PropertyRef Name="codProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbVentasContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbCategorias" EntityType="Self.tbCategorias" />
+          <EntitySet Name="tbFactura" EntityType="Self.tbFactura" />
+          <EntitySet Name="tbFacturaDet" EntityType="Self.tbFacturaDet" />
+          <EntitySet Name="tbLogin" EntityType="Self.tbLogin" />
+          <EntitySet Name="tbProducto" EntityType="Self.tbProducto" />
+          <AssociationSet Name="FK_tbProducto_tbCategorias" Association="Self.FK_tbProducto_tbCategorias">
+            <End Role="tbCategorias" EntitySet="tbCategorias" />
+            <End Role="tbProducto" EntitySet="tbProducto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbFactura_tbLogin" Association="Self.FK_tbFactura_tbLogin">
+            <End Role="tbLogin" EntitySet="tbLogin" />
+            <End Role="tbFactura" EntitySet="tbFactura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbFacturaDet_tbFactura" Association="Self.FK_tbFacturaDet_tbFactura">
+            <End Role="tbFactura" EntitySet="tbFactura" />
+            <End Role="tbFacturaDet" EntitySet="tbFacturaDet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbCompra_tbProducto" Association="Self.FK_tbCompra_tbProducto">
+            <End Role="tbProducto" EntitySet="tbProducto" />
+            <End Role="tbFacturaDet" EntitySet="tbFacturaDet" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbVentasModelStoreContainer" CdmEntityContainer="dbVentasContext">
+          <EntitySetMapping Name="tbCategorias">
+            <EntityTypeMapping TypeName="dbVentasModel.tbCategorias">
+              <MappingFragment StoreEntitySet="tbCategorias">
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbFactura">
+            <EntityTypeMapping TypeName="dbVentasModel.tbFactura">
+              <MappingFragment StoreEntitySet="tbFactura">
+                <ScalarProperty Name="idFactura" ColumnName="idFactura" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="montoTotal" ColumnName="montoTotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbFacturaDet">
+            <EntityTypeMapping TypeName="dbVentasModel.tbFacturaDet">
+              <MappingFragment StoreEntitySet="tbFacturaDet">
+                <ScalarProperty Name="idFactura" ColumnName="idFactura" />
+                <ScalarProperty Name="codProducto" ColumnName="codProducto" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="precioVenta" ColumnName="precioVenta" />
+                <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbLogin">
+            <EntityTypeMapping TypeName="dbVentasModel.tbLogin">
+              <MappingFragment StoreEntitySet="tbLogin">
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="nomCliente" ColumnName="nomCliente" />
+                <ScalarProperty Name="cedCliente" ColumnName="cedCliente" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="direCliente" ColumnName="direCliente" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbProducto">
+            <EntityTypeMapping TypeName="dbVentasModel.tbProducto">
+              <MappingFragment StoreEntitySet="tbProducto">
+                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="cantMax" ColumnName="cantMax" />
+                <ScalarProperty Name="cantMin" ColumnName="cantMin" />
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
