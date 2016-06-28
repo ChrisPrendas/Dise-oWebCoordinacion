@@ -1,4 +1,5 @@
 ﻿body {
+    background-color:white;
 }
 
 .textos{
@@ -100,3 +101,54 @@
   max-width: 100%;
   width:2em;
 }
+
+
+h1{
+    font-family:Arial;
+    font-size:xx-large;
+    font-weight:bold;
+}
+
+h2{
+    font-family:Arial;
+    font-size:x-large;
+}
+
+h3{
+    font-family:Arial;
+    font-size:large;
+}
+
+h4{
+    font-family:Arial;
+    font-size:medium;
+}
+
+h5{
+    font-family:Arial;
+    font-size:small;
+}
+
+h6{
+    font-family:Arial;
+    font-size:xx-small;
+}
+
+p{
+    text-align:justify;
+    line-height:2em;
+    text-indent:2em;
+    font-family:Arial;
+    font-weight:300;
+}
+   
+.panel-info > .panel-heading{
+    background-color:#6DC067;
+    border-color:#5F5F5F;
+    color:white;
+}
+
+.th tr th{
+    color:#5F5F5F;
+}
+ 
